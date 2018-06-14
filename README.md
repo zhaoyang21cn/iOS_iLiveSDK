@@ -40,6 +40,7 @@ BeautySDK  | 提供美颜预处理功能
         NSLog(@"-----> create room fail,%@ %d %@",module, errId, errMsg);
     }];
 详情参见：https://cloud.tencent.com/document/product/647/16811
+
 如果房间号已存在则使用加入房间接口
 
 	[[ILiveRoomManager getInstance] joinRoom:[self.roomInfo[@"roomID"] intValue] option:option succ:^{
