@@ -12,7 +12,7 @@ BeautySDK  | 提供美颜预处理功能
 
 在开发自己的实时音视频产品前需要先将上述SDK集成在工程中。
 
-详细集成方法请参考<https://cloud.tencent.com/document/product/647/16809>
+详细集成方法请参考[SDK集成](https://cloud.tencent.com/document/product/647/16809)
 # API调用
 在集成完SDK后，只需要**5步**API调用，即可完成音视频通话、文本消息聊天等功能，具体调用接口如下：
 
@@ -20,7 +20,7 @@ BeautySDK  | 提供美颜预处理功能
 ~~~OBJC
 	[[ILiveSDK getInstance] initSdk:sdkAppID accountType:accountType];
 ~~~
-> 详情参见[初始化]https://cloud.tencent.com/document/product/647/16810
+详情参见[初始化](https://cloud.tencent.com/document/product/647/16810)
 
 **2、账号登录**
 ~~~OBJC
@@ -30,7 +30,7 @@ BeautySDK  | 提供美颜预处理功能
         NSLog(@"-----> login  fail,%@ %d %@",module, errId, errMsg);        
     }];
 ~~~
-> 详情参见[登录]https://cloud.tencent.com/document/product/647/16810
+> 详情参见[登录](https://cloud.tencent.com/document/product/647/16810)
 
 **3、创建房间或者加入房间**
 
@@ -42,7 +42,7 @@ BeautySDK  | 提供美颜预处理功能
         NSLog(@"-----> create room fail,%@ %d %@",module, errId, errMsg);
     }];
 ~~~
-> 详情参见[创建房间]https://cloud.tencent.com/document/product/647/16811
+> 详情参见[创建房间](https://cloud.tencent.com/document/product/647/16811)
 
 如果房间号已存在则使用加入房间接口
 ~~~OBJC
@@ -52,7 +52,7 @@ BeautySDK  | 提供美颜预处理功能
         NSLog(@"-----> join room fail,%@ %d %@",module, errId, errMsg);
     }];
 ~~~
-> 详情参见[加入房间]https://cloud.tencent.com/document/product/647/16814
+> 详情参见[加入房间](https://cloud.tencent.com/document/product/647/16814)
 
 **4、视频画面展示**
 ~~~OBJC
@@ -74,7 +74,7 @@ BeautySDK  | 提供美颜预处理功能
 	    return YES;
 	}
 ~~~
-> 详情参见[视频渲染]https://cloud.tencent.com/document/product/647/16814
+> 详情参见[视频渲染](https://cloud.tencent.com/document/product/647/16814)
 
 **5、消息处理**
 ~~~OBJC
@@ -91,7 +91,7 @@ BeautySDK  | 提供美颜预处理功能
 	        NSLog(@"send message fail");
 	 }];
 ~~~
-> 详情参见[消息处理]https://cloud.tencent.com/document/product/647/16815
+> 详情参见[消息处理](https://cloud.tencent.com/document/product/647/16815)
 # 一步接入视频通话
 本文不仅了集成账号登录、音视频通话、文本消息互动的基础能力，还提供一套简单易用的视频通话界面，在完成账号登录后，三行代码即可接入，首先将TCLiveRoomVC文件夹内容拷贝到自己工程，然后初始化TCLiveRoomViewController即可，代码示例：
 ~~~OBJC
