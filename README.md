@@ -28,7 +28,7 @@ BeautySDK  | 提供美颜预处理功能
         NSLog(@"-----> login  succ");
     } failed:^(NSString *module, int errId, NSString *errMsg) {
         NSLog(@"-----> login  fail,%@ %d %@",module, errId, errMsg);        
-    }];
+}];
 ~~~
 > 详情参见[登录](https://cloud.tencent.com/document/product/647/16810)
 
