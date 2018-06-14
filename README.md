@@ -12,19 +12,19 @@ BeautySDK  | 提供美颜预处理功能
 
 在开发自己的实时音视频产品前需要先将上述SDK集成在工程中。
 
-详细集成方法请参考[SDK集成](https://cloud.tencent.com/document/product/647/16809)
+> 详细集成方法请参考[SDK集成](https://cloud.tencent.com/document/product/647/16809)
 # API调用
 在集成完SDK后，只需要**5步**API调用，即可完成音视频通话、文本消息聊天等功能，具体调用接口如下：
 
 **1、初始化SDK**
 ~~~OBJC
-	[[ILiveSDK getInstance] initSdk:sdkAppID accountType:accountType];
+[[ILiveSDK getInstance] initSdk:sdkAppID accountType:accountType];
 ~~~
-详情参见[初始化](https://cloud.tencent.com/document/product/647/16810)
+> 详情参见[初始化](https://cloud.tencent.com/document/product/647/16810)
 
 **2、账号登录**
 ~~~OBJC
-	[[ILiveLoginManager getInstance] iLiveLogin:userID sig:userSig succ:^{
+[[ILiveLoginManager getInstance] iLiveLogin:userID sig:userSig succ:^{
         NSLog(@"-----> login  succ");
     } failed:^(NSString *module, int errId, NSString *errMsg) {
         NSLog(@"-----> login  fail,%@ %d %@",module, errId, errMsg);        
@@ -36,7 +36,7 @@ BeautySDK  | 提供美颜预处理功能
 
 如果房间号不存在使用创建房间接口
 ~~~OBJC
-	[[ILiveRoomManager getInstance] createRoom:roomID option:option succ:^{
+[[ILiveRoomManager getInstance] createRoom:roomID option:option succ:^{
         NSLog(@"-----> create room succ");
     } failed:^(NSString *module, int errId, NSString *errMsg) {
         NSLog(@"-----> create room fail,%@ %d %@",module, errId, errMsg);
@@ -46,17 +46,17 @@ BeautySDK  | 提供美颜预处理功能
 
 如果房间号已存在则使用加入房间接口
 ~~~OBJC
-	[[ILiveRoomManager getInstance] joinRoom:[self.roomInfo[@"roomID"] intValue] option:option succ:^{
+[[ILiveRoomManager getInstance] joinRoom:[self.roomInfo[@"roomID"] intValue] option:option succ:^{
         NSLog(@"-----> join room succ");
     } failed:^(NSString *module, int errId, NSString *errMsg) {
         NSLog(@"-----> join room fail,%@ %d %@",module, errId, errMsg);
-    }];
+}];
 ~~~
 > 详情参见[加入房间](https://cloud.tencent.com/document/product/647/16814)
 
 **4、视频画面展示**
 ~~~OBJC
-	- (BOOL)onEndpointsUpdateInfo:(QAVUpdateEvent)event updateList:(NSArray *)endpoints{
+- (BOOL)onEndpointsUpdateInfo:(QAVUpdateEvent)event updateList:(NSArray *)endpoints{
 	    for (QAVEndpoint *endoption in endpoints) {
 	        switch (event) {
 	            case QAV_EVENT_ID_ENDPOINT_HAS_CAMERA_VIDEO:
@@ -72,31 +72,31 @@ BeautySDK  | 提供美颜预处理功能
 	        }
 	    }
 	    return YES;
-	}
+}
 ~~~
 > 详情参见[视频渲染](https://cloud.tencent.com/document/product/647/16814)
 
 **5、消息处理**
 ~~~OBJC
-	//设置消息监听
-	[[[ILiveSDK getInstance] getTIMManager] setMessageListener:self];
-	消息接收
-	-(void)onNewMessage:(NSArray *)msgs{  
-		
-	}
-	//消息发送
-	[[ILiveRoomManager getInstance] sendGroupMessage:msge succ:^{
-	        NSLog(@"send message succ");
-	    } failed:^(NSString *module, int errId, NSString *errMsg) {
-	        NSLog(@"send message fail");
-	 }];
+//设置消息监听
+[[[ILiveSDK getInstance] getTIMManager] setMessageListener:self];
+消息接收
+-(void)onNewMessage:(NSArray *)msgs{  
+
+}
+//消息发送
+[[ILiveRoomManager getInstance] sendGroupMessage:msge succ:^{
+	NSLog(@"send message succ");
+    } failed:^(NSString *module, int errId, NSString *errMsg) {
+	NSLog(@"send message fail");
+ }];
 ~~~
 > 详情参见[消息处理](https://cloud.tencent.com/document/product/647/16815)
 # 一步接入视频通话
 本文不仅了集成账号登录、音视频通话、文本消息互动的基础能力，还提供一套简单易用的视频通话界面，在完成账号登录后，三行代码即可接入，首先将TCLiveRoomVC文件夹内容拷贝到自己工程，然后初始化TCLiveRoomViewController即可，代码示例：
 ~~~OBJC
-	TCLiveRoomViewController *vc = [[TCLiveRoomViewController alloc] init];
-	vc.roomInfo = @{@"roomID":@(123456)};
-    [self.navigationController pushViewController:vc animated:YES];
+TCLiveRoomViewController *vc = [[TCLiveRoomViewController alloc] init];
+vc.roomInfo = @{@"roomID":@(123456)};
+[self.navigationController pushViewController:vc animated:YES];
 ~~~
 在复用的同时，本界面中的视频画面、消息聊天、控制按钮模块都可单独使用，只需要初始化创建TCLiveVideoLayoutView(视频区域)、TCLiveChatTableView(消息列表)、TCLiveVideoControlBar(控制bar)、UITextField(输入框)，并设置大小位置，添加到指定界面即可，详细代码位置请参见工程中TCLiveRoomViewController类的viewDidLoad方法。
