@@ -74,7 +74,7 @@ BeautySDK  | 提供美颜预处理功能
 	return YES;
 }
 ~~~
-> 详情参见[视频渲染](https://cloud.tencent.com/document/product/647/16814)
+> 详情参见[画面展示](https://cloud.tencent.com/document/product/647/16814)
 
 **5、消息处理**
 ~~~OBJC
