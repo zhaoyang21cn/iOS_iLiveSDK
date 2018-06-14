@@ -38,9 +38,9 @@ BeautySDK  | 提供美颜预处理功能
 ~~~OBJC
 [[ILiveRoomManager getInstance] createRoom:roomID option:option succ:^{
         NSLog(@"-----> create room succ");
-    } failed:^(NSString *module, int errId, NSString *errMsg) {
+   } failed:^(NSString *module, int errId, NSString *errMsg) {
         NSLog(@"-----> create room fail,%@ %d %@",module, errId, errMsg);
-    }];
+}];
 ~~~
 > 详情参见[创建房间](https://cloud.tencent.com/document/product/647/16811)
 
@@ -57,21 +57,21 @@ BeautySDK  | 提供美颜预处理功能
 **4、视频画面展示**
 ~~~OBJC
 - (BOOL)onEndpointsUpdateInfo:(QAVUpdateEvent)event updateList:(NSArray *)endpoints{
-	    for (QAVEndpoint *endoption in endpoints) {
-	        switch (event) {
-	            case QAV_EVENT_ID_ENDPOINT_HAS_CAMERA_VIDEO:
-	            {
+	for (QAVEndpoint *endoption in endpoints) {
+	   switch (event) {
+	        case QAV_EVENT_ID_ENDPOINT_HAS_CAMERA_VIDEO:
+	        {
 	            ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
-                //传入成员userid获取画面
-                ILiveRenderView *renderView = [frameDispatcher addRenderAt:CGRectZero forIdentifier:endoption.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
-                [self addLiveRenderView:renderView];//添加画面到指定view
-	            }
-	                break;	                
-	            default:
-	                break;
-	        }
+                    //传入成员userid获取画面
+                    ILiveRenderView *renderView = [frameDispatcher addRenderAt:CGRectZero forIdentifier:endoption.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
+                    [self addLiveRenderView:renderView];//添加画面到指定view
+	         }
+	            break;	                
+	         default:
+	            break;
 	    }
-	    return YES;
+	 }
+	return YES;
 }
 ~~~
 > 详情参见[视频渲染](https://cloud.tencent.com/document/product/647/16814)
