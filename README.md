@@ -168,7 +168,7 @@ BeautySDK：提供美颜预处理功能
 	        NSLog(@"-----> quit room fail,%@ %d %@",module, errId, errMsg);
 	    }];
 	}
-
+更加详细的API调用说明，可参看https://cloud.tencent.com/document/product/647
 
 
 # 视频通话界面复用
