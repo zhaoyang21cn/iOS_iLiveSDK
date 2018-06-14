@@ -69,7 +69,7 @@ BeautySDK：提供美颜预处理功能
 	}
 2.加入房间
 
-	    [[ILiveRoomManager getInstance] joinRoom:[self.roomInfo[@"roomID"] intValue] option:option succ:^{
+	[[ILiveRoomManager getInstance] joinRoom:[self.roomInfo[@"roomID"] intValue] option:option succ:^{
         NSLog(@"-----> join room succ");
     } failed:^(NSString *module, int errId, NSString *errMsg) {
         NSLog(@"-----> join room fail,%@ %d %@",module, errId, errMsg);
@@ -91,7 +91,7 @@ BeautySDK：提供美颜预处理功能
 	        switch (event) {
 	            case QAV_EVENT_ID_ENDPOINT_HAS_CAMERA_VIDEO:
 	            {
-	                ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
+	            ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
                 //传入成员userid获取画面
                 ILiveRenderView *renderView = [frameDispatcher addRenderAt:CGRectZero forIdentifier:endoption.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
                 //配置画面参数，可不配置使用默认参数
@@ -102,7 +102,7 @@ BeautySDK：提供美颜预处理功能
                 if ([[TCLiveRequestManager getInstance].userID isEqualToString:endoption.identifier]) {
                     renderView.rotateAngle = ILIVEROTATION_90;//画面旋转角度
                 }
-                [self addLiveRenderView:renderView];
+                [self addLiveRenderView:renderView];//添加画面到指定view
 	            }
 	                break;	                
 	            default:
