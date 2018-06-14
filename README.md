@@ -1,6 +1,7 @@
-# IOS_TRTC
+# 产品介绍
 腾讯实时音视频(TRTC)，集成了账号登录、音视频通话、文本消息聊天等基础功能，可在无音视频基础技术的情况下，快速接入开发定制化的实时音视频产品。
-# 集成音视频SDK
+
+# 导入工程
 我们将底层音视频能力封装成了一套SDK集合，包含有
 
 SDK  | 说明
@@ -13,6 +14,7 @@ BeautySDK  | 提供美颜预处理功能
 在开发自己的实时音视频产品前需要先将上述SDK集成在工程中。
 
 详细集成方法请参考<https://cloud.tencent.com/document/product/647/16809>
+
 # API调用
 在集成完SDK后，只需要**5步**API调用，即可完成音视频通话、文本消息聊天等功能，具体调用接口如下：
 
@@ -86,7 +88,8 @@ BeautySDK  | 提供美颜预处理功能
 	        NSLog(@"send message fail");
 	 }];
 详情参见：https://cloud.tencent.com/document/product/647/16815
-# 一步接入视频通话
+
+# UI复用
 本文不仅了集成账号登录、音视频通话、文本消息互动的基础能力，还提供一套简单易用的视频通话界面，在完成账号登录后，三行代码即可接入，首先将TCLiveRoomVC文件夹内容拷贝到自己工程，然后初始化TCLiveRoomViewController即可，代码示例：
 
 	TCLiveRoomViewController *vc = [[TCLiveRoomViewController alloc] init];
