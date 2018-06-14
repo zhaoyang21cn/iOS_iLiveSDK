@@ -30,6 +30,22 @@ BeautySDK：提供美颜预处理功能
 登录相关接口在ILiveLoginManager类中，调用方法：
 
 	- (void)iLiveLogin:(NSString *)uid sig:(NSString *)sig succ:(TCIVoidBlock)succ failed:(TCIErrorBlock)failed;
+其中uid，sig为用户登录id和密钥，需要从腾讯云后台获取，本文也提供了获取方法，调用接口
+	
+	- (void)requestLoginInfo:(LiveLoginInfoBlock)block;
+代码示例：
+	
+	[[TCLiveRequestManager getInstance] requestLoginInfo:^(int code) {
+        if (code == 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[ILiveLoginManager getInstance] iLiveLogin:[TCLiveRequestManager getInstance].userID sig:[TCLiveRequestManager getInstance].userSig succ:^{
+                    NSLog(@"-----> login  succ");            
+                } failed:^(NSString *module, int errId, NSString *errMsg) {
+                    NSLog(@"-----> login  fail,%@ %d %@",module, errId, errMsg);
+                }];
+            });
+        }
+    }];
 ## 进入房间
 在本工程中用户可任意输入房间号码(整数数字)进入房间，进入房间的API有两种，第一种房间号不存在则需要以创建房间的方式进入，第二种若房间号存在则直接加入房间，具体调用方法如下：
 
@@ -168,7 +184,7 @@ BeautySDK：提供美颜预处理功能
 	        NSLog(@"-----> quit room fail,%@ %d %@",module, errId, errMsg);
 	    }];
 	}
-更加详细的API调用说明，可参看https://cloud.tencent.com/document/product/647
+
 
 
 # 视频通话界面复用
@@ -232,4 +248,3 @@ BeautySDK：提供美颜预处理功能
 	    _inputTextField.frame = CGRectMake(0, self.view.frame.size.height , self.view.frame.size.width, LIVE_INPUTTEXTFIELD_HEIGHT);
 	    return _inputTextField;
 	}
-
