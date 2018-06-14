@@ -9,9 +9,21 @@ ILiveSDK：在 AVSDK 基础上封装而成，提供更简单易用的音视频�
 在开发自己的实时音视频产品前需要先将上述SDK集成在工程中，详细集成方法请参考https://cloud.tencent.com/document/product/647/16809
 # API调用
 ## 初始化SDK
-## 进入房间
-## 视频画面渲染
-## 退出房间
+在成功集成SDK后，建议在程序启动时就进行SDK初始化，初始化需要用到在腾讯云后台创建应用时分配的 SDKAppId 和 AccountType，示例代码如下：
+// 定义SDKAppId和AccountType
+static  const int kSDKAppID = 后台创建应用对应的SDKAppId;
+static  const int kAccountType = 后台创建应用对应的AccountType;
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    // 初始化SDK
+    [[ILiveSDK getInstance] initSdk:kSDKAppID accountType:kAccountType];
+
+    return YES;
+}
+## 账号登录
+## 进入房间
+## 退出房间
+## 文本消息处理
 # 定制化说明
 
