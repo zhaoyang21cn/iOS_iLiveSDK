@@ -73,13 +73,13 @@ BeautySDK  | 提供美颜预处理功能
 
 **5、消息处理**
 	
-	设置消息监听
+	//设置消息监听
 	[[[ILiveSDK getInstance] getTIMManager] setMessageListener:self];
 	消息接收
 	-(void)onNewMessage:(NSArray *)msgs{  
-		//消息处理  
+		
 	}
-	消息发送
+	//消息发送
 	[[ILiveRoomManager getInstance] sendGroupMessage:msge succ:^{
 	        NSLog(@"send message succ");
 	    } failed:^(NSString *module, int errId, NSString *errMsg) {
