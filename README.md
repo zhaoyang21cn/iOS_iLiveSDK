@@ -131,19 +131,19 @@ BeautySDK：提供美颜预处理功能
 当有其他成员有消息发送时即可触发接收消息回调方法：
 	
 	-(void)onNewMessage:(NSArray *)msgs{
-    	for (TIMMessage *msg in msgs) {
-        	int count = [msg elemCount];
-        	for(int i = 0; i < count; i++) {
-            	TIMElem *elem = [msg getElem:i];
-            	//文本消息类型两种处理方式
-           	    if([elem isKindOfClass:[TIMTextElem class]]){
-               	    NSString *msgContent = ((TIMTextElem *)elem).text;
-               		break;
-            	}
-            	else if ([elem isKindOfClass:[TIMCustomElem class]]){
-                	NSString *msgContent = [[NSString alloc] initWithData:((TIMCustomElem *)elem).data encoding:NSUTF8StringEncoding];
-               	    break;
-            	}
+		for (TIMMessage *msg in msgs) {
+		int count = [msg elemCount];
+		for(int i = 0; i < count; i++) {
+		TIMElem *elem = [msg getElem:i];
+		//文本消息类型两种处理方式
+		if([elem isKindOfClass:[TIMTextElem class]]){
+		    NSString *msgContent = ((TIMTextElem *)elem).text;
+		    break;
+		}
+		else if ([elem isKindOfClass:[TIMCustomElem class]]){
+		    NSString *msgContent = [[NSString alloc] initWithData:((TIMCustomElem *)elem).data encoding:NSUTF8StringEncoding];
+		    break;
+		}
        	 }
     }
  2.发送消息
