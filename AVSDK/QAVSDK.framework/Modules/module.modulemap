@@ -1,0 +1,6 @@
+framework module QAVSDK {
+  umbrella header "QAVSDK.h"
+
+  export *
+  module * { export * }
+}
