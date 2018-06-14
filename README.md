@@ -14,13 +14,14 @@ BeautySDK  | 提供美颜预处理功能
 
 详细集成方法请参考<https://cloud.tencent.com/document/product/647/16809>
 # API调用
-在集成完SDK后，只需要5步API调用，即可完成音视频通话、文本消息聊天等功能，具体调用接口如下：
+在集成完SDK后，只需要**5步**API调用，即可完成音视频通话、文本消息聊天等功能，具体调用接口如下：
 
-1、初始化SDK
+**1、初始化SDK**
 
 	[[ILiveSDK getInstance] initSdk:sdkAppID accountType:accountType];
 详情参见：https://cloud.tencent.com/document/product/647/16810
-2、账号登录
+
+**2、账号登录**
 
 	[[ILiveLoginManager getInstance] iLiveLogin:userID sig:userSig succ:^{
         NSLog(@"-----> login  succ");
@@ -28,7 +29,8 @@ BeautySDK  | 提供美颜预处理功能
         NSLog(@"-----> login  fail,%@ %d %@",module, errId, errMsg);        
     }];
 详情参见：https://cloud.tencent.com/document/product/647/16810
-3、创建房间或者加入房间
+
+**3、创建房间或者加入房间**
 
 如果房间号不存在使用创建房间接口
 	
@@ -46,7 +48,8 @@ BeautySDK  | 提供美颜预处理功能
         NSLog(@"-----> join room fail,%@ %d %@",module, errId, errMsg);
     }];
 详情参见：https://cloud.tencent.com/document/product/647/16814
-4、视频画面展示
+
+**4、视频画面展示**
 	
 	- (BOOL)onEndpointsUpdateInfo:(QAVUpdateEvent)event updateList:(NSArray *)endpoints{
 	    for (QAVEndpoint *endoption in endpoints) {
@@ -66,7 +69,8 @@ BeautySDK  | 提供美颜预处理功能
 	    return YES;
 	}
 详情参见：https://cloud.tencent.com/document/product/647/16814
-5、消息处理
+
+**5、消息处理**
 	
 	设置消息监听
 	[[[ILiveSDK getInstance] getTIMManager] setMessageListener:self];
