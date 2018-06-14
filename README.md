@@ -126,7 +126,7 @@ BeautySDK  | 提供美颜预处理功能
 	    _chatTableView.frame = CGRectMake(0, self.view.frame.size.height - LIVE_CONTROL_BAR_HEIGHT - 300, 250, 300);
 	    return _chatTableView;
 	}
-		//控制bar
+	//控制bar
 	- (TCLiveVideoControlBar *)controlBar{
 	    if (!_controlBar) {
 	        _controlBar = [[TCLiveVideoControlBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - LIVE_CONTROL_BAR_HEIGHT, self.view.frame.size.width, LIVE_CONTROL_BAR_HEIGHT)];
@@ -134,7 +134,7 @@ BeautySDK  | 提供美颜预处理功能
 	    }
 	    return _controlBar;
 	}
-		//输入框
+	//输入框
 	- (UITextField *)inputTextField{
 	    if (!_inputTextField) {
 	        _inputTextField = [[UITextField alloc] initWithFrame:CGRectZero];
