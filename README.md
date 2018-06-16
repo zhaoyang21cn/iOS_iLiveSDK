@@ -93,10 +93,9 @@ BeautySDK  | 提供美颜预处理功能
 ~~~
 > 详情参见[消息处理](https://cloud.tencent.com/document/product/647/16815)
 # 一步接入视频通话
-本文不仅了集成账号登录、音视频通话、文本消息互动的基础能力，还提供一套简单易用的视频通话界面，在完成账号登录后，三行代码即可接入，首先将TCLiveRoomVC文件夹内容拷贝到自己工程，然后初始化TCLiveRoomViewController即可，代码示例：
+本文不仅了集成账号登录、音视频通话、文本消息互动的基础能力，还提供一套简单易用的视频通话界面，在完成账号登录后，两行代码即可接入，首先将TCLiveRoomVC文件夹内容拷贝到自己工程，然后初始化TCLiveRoomViewController即可，代码示例：
 ~~~OBJC
-TCLiveRoomViewController *vc = [[TCLiveRoomViewController alloc] init];
-vc.roomInfo = @{@"roomID":@(123456)};
+TCLiveRoomViewController *vc = [[TCLiveRoomViewController alloc] initWithRoomID:@"123456"];
 [self.navigationController pushViewController:vc animated:YES];
 ~~~
 在复用的同时，本界面中的视频画面、消息聊天、控制按钮模块都可单独使用，只需要初始化创建TCLiveVideoLayoutView(视频区域)、TCLiveChatTableView(消息列表)、TCLiveVideoControlBar(控制bar)、UITextField(输入框)，并设置大小位置，添加到指定界面即可，详细代码位置请参见工程中TCLiveRoomViewController类的viewDidLoad方法。
