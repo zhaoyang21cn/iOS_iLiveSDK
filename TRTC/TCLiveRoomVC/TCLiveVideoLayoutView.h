@@ -21,19 +21,24 @@ typedef enum {
 @end
 
 @interface TCLiveVideoLayoutView : UIView
+//画面布局样式
 @property(nonatomic,assign) TCLiveRoomVideoLayoutStyle layoutStyle;
 //添加画面渲染
 - (void)addLiveRenderView:(ILiveRenderView *)renderView;
 //移除画面渲染
 - (void)removeLiverRenderVeiw:(ILiveRenderView *)renderView;
+//显示日志信息
 - (void)showLogView:(NSString *)qualityParams;
+//关闭日志信息
 - (void)closeLogView;
-- (void)showElementVideoInfoWithVideoFrame:(QAVVideoFrame *)frame;
+//设置美颜
 - (void)setBeautyLevel:(NSInteger)level;
 @end
 
 @interface TCLiveVideoElementView: UIView
+//展示userID
 @property(nonatomic,strong)UILabel *userIdLabel;
+//展示视频分辨率、帧率等信息
 @property(nonatomic,strong)UILabel *videoInfoLable;
 @property(nonatomic,weak)TCLiveVideoLayoutView<TCLiveVideoElementViewDelegate> *delegate;
 //可拖动开关

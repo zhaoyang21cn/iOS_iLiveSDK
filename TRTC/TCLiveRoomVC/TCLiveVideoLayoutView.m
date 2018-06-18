@@ -236,11 +236,7 @@
 - (void)OnLocalVideoRawSampleBuf:(CMSampleBufferRef)buf result:(CMSampleBufferRef *)ret{
     
 }
-#pragma mark - TXIVideoPreprocessorDelegate
-- (void)didProcessFrame:(Byte *)bytes width:(NSInteger)width height:(NSInteger)height format:(TXEFrameFormat)format timeStamp:(UInt64)timeStamp
-{
-    self.processorBytes = bytes;
-}
+
 /***远端视频帧数据回调***/
 #pragma mark - QAVRemoteVideoDelegate
 - (void)OnVideoPreview:(QAVVideoFrame *)frameData{
@@ -257,7 +253,12 @@
 - (void)onFirstFrameRecved:(int)width height:(int)height identifier:(NSString *)identifier srcType:(avVideoSrcType)srcType;{
  
 }
-
+/***美颜相关处理***/
+#pragma mark - TXIVideoPreprocessorDelegate
+- (void)didProcessFrame:(Byte *)bytes width:(NSInteger)width height:(NSInteger)height format:(TXEFrameFormat)format timeStamp:(UInt64)timeStamp
+{
+    self.processorBytes = bytes;
+}
 #pragma mark - LOG相关
 - (void)showLogView:(NSString *)qualityParams{
     NSString *role = [[[[qualityParams componentsSeparatedByString:@"ControlRole="] lastObject] componentsSeparatedByString:@","] firstObject];

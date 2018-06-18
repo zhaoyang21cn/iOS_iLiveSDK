@@ -10,7 +10,8 @@
 #import <ImSDK/ImSDK.h>
 
 @interface TCLiveChatTableView : UITableView
-
+//添加信息到聊天列表
 - (void)addChatMessage:(NSArray *)msgList withContentColor:(UIColor *)contentColor nickColor:(UIColor *)nickColor;
+//发送信息
 - (void)sendMessage:(NSString *)message;
 @end

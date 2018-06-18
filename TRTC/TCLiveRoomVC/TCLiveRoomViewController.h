@@ -10,7 +10,6 @@
 #import "TCLiveVideoLayoutView.h"
 
 @interface TCLiveRoomViewController : UIViewController
-@property(nonatomic,strong) TCLiveVideoLayoutView *videoLayoutView;
-@property(nonatomic,strong) NSString *roomID;
+//传入roomid(房间号)进入指定房间
 -(instancetype)initWithRoomID:(NSString *)roomid;
 @end

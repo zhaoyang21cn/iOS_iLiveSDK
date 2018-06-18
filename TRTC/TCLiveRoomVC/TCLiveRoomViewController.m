@@ -24,9 +24,11 @@
 #define LIVE_INPUTTEXTFIELD_HEIGHT 40
 
 @interface TCLiveRoomViewController ()<UITextFieldDelegate,TCLiveVideoControlBarDelegate>
+@property(nonatomic,strong) TCLiveVideoLayoutView *videoLayoutView;
 @property(nonatomic,strong) TCLiveVideoControlBar *controlBar;
 @property(nonatomic,strong) TCLiveChatTableView *chatTableView;
 @property(nonatomic,strong) UITextField *inputTextField;
+@property(nonatomic,strong) NSString *roomID;
 @property(nonatomic,strong) UIImageView *bgImageView;
 @property(nonatomic,strong) NSTimer *logTimer;
 @property(nonatomic,strong) NSTimer *heartBeatTimer;

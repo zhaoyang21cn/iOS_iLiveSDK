@@ -176,6 +176,7 @@
     
     return msgInfo;
 }
+//点击事件透传
 -(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     return nil;
 }

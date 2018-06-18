@@ -10,12 +10,19 @@
 
 @protocol TCLiveVideoControlBarDelegate <NSObject>
 @optional
+//切换摄像头
 - (void)switchCameraBtnClick:(UIButton *)sender;
+//开关美颜
 - (void)beautyBtnClick:(UIButton *)sender;
+//开关麦克风
 - (void)voiceBtnClick:(UIButton *)sender;
+//展示日志
 - (void)logBtnClick:(UIButton *)sender;
+//反馈
 - (void)feedBackBtnClick:(UIButton *)sender;
+//切换配置
 - (void)changeRoleBtnClick:(UIButton *)sender;
+//聊天
 - (void)chatBtnClick:(UIButton *)sender;
 @end
 
