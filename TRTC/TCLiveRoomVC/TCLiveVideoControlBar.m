@@ -72,7 +72,7 @@
 
 - (UIButton *)voiceBtn{
     if (!_voiceBtn) {
-        _voiceBtn = [self createCustomControlBtn:@"声音" withImage:[UIImage imageNamed:@"mic.png"] selectedImage:[UIImage imageNamed:@"mic-dis.png"]];
+        _voiceBtn = [self createCustomControlBtn:@"声音" withImage:[UIImage imageNamed:@"mic-dis.png"] selectedImage:[UIImage imageNamed:@"mic.png"]];
         [_voiceBtn addTarget:self action:@selector(voiceBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     _voiceBtn.frame = CGRectMake(self.frame.size.width/2 - CONTROLBAR_BUTTON_WIDTH * 0.5, 0, CONTROLBAR_BUTTON_WIDTH, self.frame.size.height);
