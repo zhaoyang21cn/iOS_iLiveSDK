@@ -107,8 +107,6 @@
 		D81E454320D28AFA00E40904 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D81E454220D28AFA00E40904 /* libstdc++.tbd */; };
 		D841719D20C62F2C00177BCD /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D841719B20C62F2C00177BCD /* bg.png */; };
 		D84171A020C6353C00177BCD /* UIColorEX.m in Sources */ = {isa = PBXBuildFile; fileRef = D841719F20C6353C00177BCD /* UIColorEX.m */; };
-		D84171A620C6811200177BCD /* RefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D84171A520C6811200177BCD /* RefreshFooter.m */; };
-		D84171A920C6817100177BCD /* RefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = D84171A820C6817100177BCD /* RefreshHeader.m */; };
 		D879E03520C7CE490078E970 /* muti_room_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D879E03420C7CE490078E970 /* muti_room_bg.png */; };
 		D879E03720C7D1E20078E970 /* feedback.png in Resources */ = {isa = PBXBuildFile; fileRef = D879E03620C7D1E10078E970 /* feedback.png */; };
 		D879E03920C7D1E90078E970 /* role.png in Resources */ = {isa = PBXBuildFile; fileRef = D879E03820C7D1E90078E970 /* role.png */; };
@@ -292,10 +290,6 @@
 		D841719B20C62F2C00177BCD /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		D841719E20C6353C00177BCD /* UIColorEX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIColorEX.h; sourceTree = "<group>"; };
 		D841719F20C6353C00177BCD /* UIColorEX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIColorEX.m; sourceTree = "<group>"; };
-		D84171A420C6811200177BCD /* RefreshFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefreshFooter.h; sourceTree = "<group>"; };
-		D84171A520C6811200177BCD /* RefreshFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefreshFooter.m; sourceTree = "<group>"; };
-		D84171A720C6817100177BCD /* RefreshHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefreshHeader.h; sourceTree = "<group>"; };
-		D84171A820C6817100177BCD /* RefreshHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefreshHeader.m; sourceTree = "<group>"; };
 		D879E03420C7CE490078E970 /* muti_room_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = muti_room_bg.png; sourceTree = "<group>"; };
 		D879E03620C7D1E10078E970 /* feedback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedback.png; sourceTree = "<group>"; };
 		D879E03820C7D1E90078E970 /* role.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = role.png; sourceTree = "<group>"; };
@@ -655,17 +649,6 @@
 			path = YoutuBeauty;
 			sourceTree = "<group>";
 		};
-		D84171A320C680FC00177BCD /* RefreshControl */ = {
-			isa = PBXGroup;
-			children = (
-				D84171A420C6811200177BCD /* RefreshFooter.h */,
-				D84171A520C6811200177BCD /* RefreshFooter.m */,
-				D84171A720C6817100177BCD /* RefreshHeader.h */,
-				D84171A820C6817100177BCD /* RefreshHeader.m */,
-			);
-			path = RefreshControl;
-			sourceTree = "<group>";
-		};
 		D879E07820C827A70078E970 /* IMSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -837,7 +820,6 @@
 		D8DAF99520CB96B4003C8961 /* TCLiveUITools */ = {
 			isa = PBXGroup;
 			children = (
-				D84171A320C680FC00177BCD /* RefreshControl */,
 				D841719E20C6353C00177BCD /* UIColorEX.h */,
 				D841719F20C6353C00177BCD /* UIColorEX.m */,
 				D8DAF99A20CBAF2C003C8961 /* UIToastView.h */,
@@ -1082,10 +1064,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D888AE0120C3F2E6001BE4E0 /* TCLiveChatTableView.m in Sources */,
-				D84171A620C6811200177BCD /* RefreshFooter.m in Sources */,
 				D888ADFE20C3EC63001BE4E0 /* TCLiveVideoControlBar.m in Sources */,
 				D84171A020C6353C00177BCD /* UIColorEX.m in Sources */,
-				D84171A920C6817100177BCD /* RefreshHeader.m in Sources */,
 				D888ADFB20C3D9F0001BE4E0 /* TCLiveVideoLayoutView.m in Sources */,
 				D888AD2720BFA152001BE4E0 /* TCLiveJoinRoomViewController.m in Sources */,
 				D888ADF520C04237001BE4E0 /* TCLiveRoomViewController.m in Sources */,
