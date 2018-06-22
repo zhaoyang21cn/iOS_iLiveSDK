@@ -698,7 +698,6 @@
 				D888AD2520BFA152001BE4E0 /* TCLiveJoinRoomViewController.h */,
 				D888AD2620BFA152001BE4E0 /* TCLiveJoinRoomViewController.m */,
 				D8DAF99420CB95E0003C8961 /* TCLiveRoomVC */,
-				D8DAF99520CB96B4003C8961 /* TCLiveUITools */,
 				D888AD2820BFA152001BE4E0 /* Main.storyboard */,
 				D888AD2E20BFA153001BE4E0 /* Assets.xcassets */,
 				D888AD3020BFA153001BE4E0 /* LaunchScreen.storyboard */,
@@ -813,6 +812,7 @@
 				D888AE0020C3F2E6001BE4E0 /* TCLiveChatTableView.m */,
 				D8DAF98E20CA3FDB003C8961 /* TCLiveChatTableViewCell.h */,
 				D8DAF98F20CA3FDB003C8961 /* TCLiveChatTableViewCell.m */,
+				D8DAF99520CB96B4003C8961 /* TCLiveUITools */,
 			);
 			path = TCLiveRoomVC;
 			sourceTree = "<group>";
