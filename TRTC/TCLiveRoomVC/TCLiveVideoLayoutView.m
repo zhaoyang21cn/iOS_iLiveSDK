@@ -218,8 +218,12 @@
 /***本地画面帧数据回调***/
 #pragma mark - QAVLocalVideoDelegate
 - (void)OnLocalVideoPreview:(QAVVideoFrame *)frameData{
-    
     [self showElementVideoInfoWithVideoFrame:frameData];
+}
+
+- (void)OnLocalVideoPreProcess:(QAVVideoFrame *)frameData{
+    
+    
     [self.preProcessor setOutputSize:CGSizeMake(frameData.frameDesc.width, frameData.frameDesc.height)];
     [self.preProcessor setCropRect:CGRectMake(0, 0,frameData.frameDesc.width, frameData.frameDesc.height)];
     [self.preProcessor processFrame:frameData.data width:frameData.frameDesc.width height:frameData.frameDesc.height orientation:TXE_ROTATION_0 inputFormat:TXE_FRAME_FORMAT_NV12 outputFormat:TXE_FRAME_FORMAT_NV12];
@@ -227,10 +231,6 @@
     if(self.processorBytes){
         memcpy(frameData.data, self.processorBytes, frameData.frameDesc.width * frameData.frameDesc.height * 3 / 2);
     }
-}
-
-- (void)OnLocalVideoPreProcess:(QAVVideoFrame *)frameData{
-    
 }
 
 - (void)OnLocalVideoRawSampleBuf:(CMSampleBufferRef)buf result:(CMSampleBufferRef *)ret{

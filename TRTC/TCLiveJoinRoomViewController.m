@@ -10,6 +10,8 @@
 #import "UIColorEX.h"
 #import "TCLiveRoomViewController.h"
 #import "UIToastView.h"
+#import "TCLiveConfigDefine.h"
+
 @interface TCLiveJoinRoomViewController () <UITextFieldDelegate>
 @property(nonatomic,strong)UITextField *inputTextField;
 @property(nonatomic,strong)UIButton *joinRoomBtn;
@@ -75,7 +77,7 @@
 
 - (void)joinRoomBtnClick:(UIButton *)sender{
     if (self.inputTextField.text.length > 0) {
-        TCLiveRoomViewController *vc = [[TCLiveRoomViewController alloc] initWithRoomID:self.inputTextField.text];
+        TCLiveRoomViewController *vc = [[TCLiveRoomViewController alloc] initWithRoomID:self.inputTextField.text role:Default_Role];
         [self.navigationController pushViewController:vc animated:YES];
     }
     else{

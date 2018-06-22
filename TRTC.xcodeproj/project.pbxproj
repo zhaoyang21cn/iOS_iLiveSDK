@@ -184,6 +184,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A72CEA920DCE88B00AF6E06 /* TCLiveConfigDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCLiveConfigDefine.h; sourceTree = "<group>"; };
 		D81E446E20D2847800E40904 /* ear_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ear_0.png; sourceTree = "<group>"; };
 		D81E446F20D2847800E40904 /* ear_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ear_1.png; sourceTree = "<group>"; };
 		D81E447020D2847800E40904 /* ear_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ear_10.png; sourceTree = "<group>"; };
@@ -708,6 +709,7 @@
 			children = (
 				D888AD2220BFA152001BE4E0 /* AppDelegate.h */,
 				D888AD2320BFA152001BE4E0 /* AppDelegate.m */,
+				2A72CEA920DCE88B00AF6E06 /* TCLiveConfigDefine.h */,
 				D888ADE420BFD4EB001BE4E0 /* TCLiveRequestManager.h */,
 				D888ADE520BFD4EB001BE4E0 /* TCLiveRequestManager.m */,
 				D888AD2520BFA152001BE4E0 /* TCLiveJoinRoomViewController.h */,

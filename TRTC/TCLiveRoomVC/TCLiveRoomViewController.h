@@ -11,5 +11,5 @@
 
 @interface TCLiveRoomViewController : UIViewController
 //传入roomid(房间号)进入指定房间
--(instancetype)initWithRoomID:(NSString *)roomid;
+-(instancetype)initWithRoomID:(NSString *)roomid role:(NSString *)role;
 @end

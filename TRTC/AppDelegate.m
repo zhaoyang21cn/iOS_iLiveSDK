@@ -26,13 +26,15 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 int retCode = [[ILiveSDK getInstance] initSdk:[TCLiveRequestManager getInstance].sdkAppID accountType:[TCLiveRequestManager getInstance].accountType];
                 NSLog(@"initSdk success %d",retCode);
-                [[ILiveLoginManager getInstance] iLiveLogin:[TCLiveRequestManager getInstance].userID sig:[TCLiveRequestManager getInstance].userSig succ:^{
-                    NSLog(@"-----> login  succ");
-                    [[UIToastView getInstance] showToastWithMessage:@"登录成功" toastMode:UIToastShowMode_Succ];
-                } failed:^(NSString *module, int errId, NSString *errMsg) {
-                    NSLog(@"-----> login  fail,%@ %d %@",module, errId, errMsg);
-                    [[UIToastView getInstance] showToastWithMessage:@"登录失败" toastMode:UIToastShowMode_fail];
-                }];
+                if (retCode == 0) {
+                    [[ILiveLoginManager getInstance] iLiveLogin:[TCLiveRequestManager getInstance].userID sig:[TCLiveRequestManager getInstance].userSig succ:^{
+                        NSLog(@"-----> login  succ");
+                        [[UIToastView getInstance] showToastWithMessage:@"登录成功" toastMode:UIToastShowMode_Succ];
+                    } failed:^(NSString *module, int errId, NSString *errMsg) {
+                        NSLog(@"-----> login  fail,%@ %d %@",module, errId, errMsg);
+                        [[UIToastView getInstance] showToastWithMessage:@"登录失败" toastMode:UIToastShowMode_fail];
+                    }];
+                }
             });
         }
     }];

@@ -34,13 +34,15 @@
 @property(nonatomic,strong) NSTimer *heartBeatTimer;
 @property(nonatomic,assign) CGRect origInputTextFieldFrame;
 @property(nonatomic,assign) CGRect origChatTableViewFrame;
+@property(nonatomic,strong) NSString *role;
 @end
 
 @implementation TCLiveRoomViewController
 
--(instancetype)initWithRoomID:(NSString *)roomid{
+-(instancetype)initWithRoomID:(NSString *)roomid role:(NSString *)role{
     if (self = [super init]) {
         self.roomID = roomid;
+        self.role = role;
     }
     return self;
 }
@@ -94,8 +96,8 @@
     option.imOption.imSupport = YES;
     option.memberStatusListener = self.videoLayoutView;
     option.roomDisconnectListener = self;
-    option.controlRole = @"ed640";
-    //创建房间
+    option.controlRole = self.role;
+
     [[ILiveRoomManager getInstance] createRoom:[self.roomID intValue] option:option succ:^{
         NSLog(@"-----> create room succ");
         [[UIToastView getInstance] showToastWithMessage:@"创建房间成功" toastMode:UIToastShowMode_Succ];
@@ -177,9 +179,9 @@
 //关闭界面退出房间
 - (void)backBtnClicked:(UIButton *)sender{
     [self.navigationController popViewControllerAnimated:YES];
-    [[ILiveRoomManager getInstance] quitRoomExt:YES succ:^{
+    [[ILiveRoomManager getInstance] quitRoom:^{
         NSLog(@"-----> quit room succ");
-         [[UIToastView getInstance] showToastWithMessage:@"退出房间成功" toastMode:UIToastShowMode_Succ];
+        [[UIToastView getInstance] showToastWithMessage:@"退出房间成功" toastMode:UIToastShowMode_Succ];
     } failed:^(NSString *module, int errId, NSString *errMsg) {
         NSLog(@"-----> quit room fail,%@ %d %@",module, errId, errMsg);
         [[UIToastView getInstance] showToastWithMessage:@"退出房间失败" toastMode:UIToastShowMode_fail];

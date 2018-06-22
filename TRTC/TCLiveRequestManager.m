@@ -8,6 +8,7 @@
 
 #import "TCLiveRequestManager.h"
 #import "UIToastView.h"
+#import "TCLiveConfigDefine.h"
 @implementation TCLiveRequestManager
 + (TCLiveRequestManager *)getInstance{
     static TCLiveRequestManager *singleTon = nil;
@@ -24,7 +25,7 @@
         user = @"";
     }
     NSDictionary *params = @{@"userID":user};
-    NSMutableURLRequest *request = [self getSendPostRequest:@"https://xzb.qcloud.com/webrtc/weapp/webrtc_room/get_login_info" body:params];
+    NSMutableURLRequest *request = [self getSendPostRequest:Login_Info_Url body:params];//加备注
     
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     [sessionConfig setTimeoutIntervalForRequest:30];
@@ -37,13 +38,20 @@
             [[UIToastView getInstance] showToastWithMessage:@"登录请求失败" toastMode:UIToastShowMode_fail];
         }
         else{
+            //无error data解不出
             NSDictionary *info = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            weakself.sdkAppID = [info[@"sdkAppID"] intValue];
-            weakself.accountType = [info[@"accountType"]intValue];
-            weakself.userID = info[@"userID"];
-            weakself.userSig = info[@"userSig"];
-            [[NSUserDefaults standardUserDefaults] setObject:info[@"userID"] forKey:@"TCLIVE_USER"];
-            block(0);
+            if (info) {
+                weakself.sdkAppID = [info[@"sdkAppID"] intValue];
+                weakself.accountType = [info[@"accountType"]intValue];
+                weakself.userID = info[@"userID"];
+                weakself.userSig = info[@"userSig"];
+                [[NSUserDefaults standardUserDefaults] setObject:info[@"userID"] forKey:@"TCLIVE_USER"];
+                block(0);
+            }
+            else{
+                block(-1);
+                [[UIToastView getInstance] showToastWithMessage:@"登录信息解包失败" toastMode:UIToastShowMode_fail];
+            }
         }
     }];
     [task resume];
