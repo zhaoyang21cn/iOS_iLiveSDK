@@ -67,8 +67,6 @@
     
     [_bgImageView addSubview:self.inputTextField];
     
-    self.origInputTextFieldFrame = self.inputTextField.frame;
-    self.origChatTableViewFrame = self.chatTableView.frame;
     //导航栏透明化
     [self setNavigationBarTransparent];
     //监听键盘变化
@@ -162,6 +160,7 @@
     if (!_chatTableView) {
         _chatTableView = [[TCLiveChatTableView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - LIVE_CONTROL_BAR_HEIGHT - 400, 250, 400) style:UITableViewStylePlain];
         _chatTableView.backgroundColor = [UIColor clearColor];
+        self.origChatTableViewFrame = self.chatTableView.frame;
     }
     return _chatTableView;
 }
@@ -173,6 +172,7 @@
         _inputTextField.backgroundColor= [[UIColor whiteColor] colorWithAlphaComponent:0.9];
         _inputTextField.placeholder = @"请输入内容";
         _inputTextField.returnKeyType = UIReturnKeySend;
+        self.origInputTextFieldFrame = self.inputTextField.frame;
     }
     return _inputTextField;
 }

@@ -66,34 +66,8 @@
     }
     return _logView;
 }
-//设置视频布局样式
-- (void)setLayoutStyle:(TCLiveRoomVideoLayoutStyle)layoutStyle{
-    _layoutStyle = layoutStyle;
-    NSArray *afterArr = [self customLayoutFrames];
-    for (int i = 0; i < _liveVideos.count;i++) {
-        TCLiveVideoElementView *videoView = _liveVideos[i];
-        ILiveRenderView *renderView = nil;
-        for (id view in [videoView subviews]) {
-            if ([view isKindOfClass:[ILiveRenderView class]]) {
-                renderView = (ILiveRenderView *)view;
-            }
-        }
-        if (afterArr.count > i) {
-            [UIView animateWithDuration:0.5 animations:^{
-                videoView.frame = [afterArr[i] CGRectValue];
-                renderView.frame = videoView.bounds;
-            } completion:^(BOOL finished) {
-                
-            }];
-        }
-        else{
-            videoView.frame = CGRectZero;
-            renderView.frame = CGRectZero;
-        }
-    }
-}
 
-//自定义布局(视频区域布局可直接设定每个视窗的frame来实现)
+//自定义布局(开发者可自定义每个视窗的frame来实现，视窗个数即为frames数组个数)
 - (NSArray *)customLayoutFrames{
     NSMutableArray *frames = [NSMutableArray array];
     if (TCLiveRoomVideoLayoutStyle_1v3 == _layoutStyle) {
@@ -123,27 +97,7 @@
     }
     return frames;
 }
-//画面切换
-- (void)tapHandle:(TCLiveVideoElementView *)view{
-    NSUInteger index = [_liveVideos indexOfObject:view];
-    TCLiveVideoElementView *bigView = _liveVideos[0];
-    ILiveRenderView *bigRenderView = [self getLiveRenderViewOnElementView:bigView];
-    ILiveRenderView *renderView = [self getLiveRenderViewOnElementView:view];
-    if (index > 0) {
-        [UIView animateWithDuration:0.5 animations:^{
-            bigView.frame = view.frame;
-            view.frame = [[self customLayoutFrames][0] CGRectValue];
-            bigRenderView.frame = bigView.bounds;
-            renderView.frame = view.bounds;
-            [self.liveVideos exchangeObjectAtIndex:0 withObjectAtIndex:index];
-            [self exchangeSubviewAtIndex:0 withSubviewAtIndex:index];
-        } completion:^(BOOL finished) {
-            
-        }];
-        
-    }
-    
-}
+
 //添加视频画面
 -(void)addLiveRenderView:(ILiveRenderView *)renderView{
     NSArray *frames = [self customLayoutFrames];
@@ -165,7 +119,29 @@
         [renderView removeFromSuperview];
     }
 }
-//获取渲染视图
+
+//画面切换
+- (void)tapHandle:(TCLiveVideoElementView *)view{
+    NSUInteger index = [_liveVideos indexOfObject:view];
+    TCLiveVideoElementView *bigView = _liveVideos[0];
+    ILiveRenderView *bigRenderView = [self getLiveRenderViewOnElementView:bigView];
+    ILiveRenderView *renderView = [self getLiveRenderViewOnElementView:view];
+    if (index > 0) {
+        [UIView animateWithDuration:0.5 animations:^{
+            bigView.frame = view.frame;
+            view.frame = [[self customLayoutFrames][0] CGRectValue];
+            bigRenderView.frame = bigView.bounds;
+            renderView.frame = view.bounds;
+            [self.liveVideos exchangeObjectAtIndex:0 withObjectAtIndex:index];
+            [self exchangeSubviewAtIndex:0 withSubviewAtIndex:index];
+        } completion:^(BOOL finished) {
+            
+        }];
+        
+    }
+    
+}
+//获取指定视窗的渲染view
 - (ILiveRenderView *)getLiveRenderViewOnElementView:(TCLiveVideoElementView *)elementView{
     ILiveRenderView *renderView = nil;
     for (id view in [elementView subviews]) {

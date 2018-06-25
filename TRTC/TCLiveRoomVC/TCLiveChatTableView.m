@@ -43,30 +43,23 @@
 -(void)onNewMessage:(NSArray *)msgs{
     [self addChatMessage:msgs withContentColor:nil nickColor:nil];
 }
+//消息处理
 - (void)addChatMessage:(NSArray *)msgList withContentColor:(UIColor *)contentColor nickColor:(UIColor *)nickColor{
     self.contentColor = contentColor;
     self.nickColor = nickColor;
     for (id item in msgList) {
         [self.chatMessageList insertObject:item atIndex:0];
     }
-    //过滤系统消息和白板消息
+    //过滤非文本消息
     NSMutableArray *tempArr = [NSMutableArray array];
     for (int i = 0; i < msgList.count;i++) {
         TIMMessage *msg = msgList[i];
         if (![self isTextMsg:msg]) {
             [tempArr addObject:msg];
-            continue;
-        }
-        int count = [msg elemCount];
-        for(int i = 0; i < count; i++) {
-            TIMElem *elem = [msg getElem:i];
-            if ([elem isKindOfClass:[TIMGroupSystemElem class]]) {
-                [tempArr addObject:msg];
-            }
         }
     }
-    
     [self.chatMessageList removeObjectsInArray:tempArr];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadData];
     });
@@ -92,6 +85,7 @@
 }
 //发送消息
 - (void)sendMessage:(NSString *)message{
+    //消息组装
     TIMMessage *msge = [[TIMMessage alloc] init];
     TIMCustomElem *textElem = [[TIMCustomElem alloc] init];
     textElem.data = [message dataUsingEncoding:NSUTF8StringEncoding];
@@ -100,7 +94,7 @@
     textElem.desc = desc;
     textElem.ext = @"TEXT";
     [msge addElem:textElem];
-    
+    //调用发送接口
     [[ILiveRoomManager getInstance] sendGroupMessage:msge succ:^{
         NSLog(@"send message succ");
     } failed:^(NSString *module, int errId, NSString *errMsg) {

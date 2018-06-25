@@ -10,6 +10,6 @@
 #import "TCLiveVideoLayoutView.h"
 
 @interface TCLiveRoomViewController : UIViewController
-//传入roomid(房间号)进入指定房间
+//传入roomid(房间号)进入指定房间 设置role配置画面参数
 -(instancetype)initWithRoomID:(NSString *)roomid role:(NSString *)role;
 @end

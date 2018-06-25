@@ -30,9 +30,11 @@
     
     [self.view addSubview:self.bgImageView];
     
+    [self.view addSubview:self.inputTextField];
+    
     [self.view addSubview:self.joinRoomBtn];
     
-    [self.view addSubview:self.inputTextField];
+    
 }
 
 -(UIImageView *)bgImageView{
@@ -46,7 +48,7 @@
 
 - (UIButton *)joinRoomBtn{
     if (!_joinRoomBtn) {
-        _joinRoomBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, self.view.frame.size.height - 90 -64, self.view.frame.size.width - 40, 50)];
+        _joinRoomBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, _inputTextField.frame.size.height + _inputTextField.frame.origin.y + 50, self.view.frame.size.width - 40, 50)];
         _joinRoomBtn.layer.cornerRadius = 25;
         [_joinRoomBtn setTitle:@"加入房间" forState:UIControlStateNormal];
         _joinRoomBtn.backgroundColor = [UIColor colorWithRGBHex:0x1472fc];
@@ -57,21 +59,19 @@
 }
 - (UITextField *)inputTextField{
     if (!_inputTextField) {
-        _inputTextField = [[UITextField alloc] initWithFrame:CGRectZero];
+        _inputTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, 20 , self.view.frame.size.width-10, 40)];
         _inputTextField.delegate = self;
         _inputTextField.backgroundColor= [UIColor clearColor];
-        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"请输入房间号" attributes:@{NSForegroundColorAttributeName:[UIColor grayColor]}];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"请输入房间号码" attributes:@{NSForegroundColorAttributeName:[UIColor grayColor]}];
         _inputTextField.attributedPlaceholder = str;
         _inputTextField.textColor = [UIColor grayColor];
         _inputTextField.returnKeyType = UIReturnKeyDone;
         _inputTextField.keyboardType = UIKeyboardTypeNumberPad;
         
-        _botoomLine = [[UIView alloc] initWithFrame:CGRectZero];
+        _botoomLine = [[UIView alloc] initWithFrame:CGRectMake(0, 40-1, _inputTextField.frame.size.width, 1)];
         _botoomLine.backgroundColor = [UIColor colorWithRGBHex:0x1472fc];
         [_inputTextField addSubview:_botoomLine];
     }
-    _inputTextField.frame = CGRectMake(5, 20 , self.view.frame.size.width-10, 40);
-    _botoomLine.frame = CGRectMake(0, 40-1, _inputTextField.frame.size.width, 1);
     return _inputTextField;
 }
 
