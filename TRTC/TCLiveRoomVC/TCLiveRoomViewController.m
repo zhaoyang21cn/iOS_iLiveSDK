@@ -66,14 +66,14 @@
     [_bgImageView addSubview:self.controlBar];
     
     [_bgImageView addSubview:self.inputTextField];
-    
-    //导航栏透明化
-    [self setNavigationBarTransparent];
+
     //监听键盘变化
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    //导航栏透明化
+    [self setNavigationBarTransparent];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 

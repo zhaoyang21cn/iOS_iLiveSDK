@@ -23,10 +23,6 @@ typedef enum {
 @interface TCLiveVideoLayoutView : UIView
 //画面布局样式
 @property(nonatomic,assign) TCLiveRoomVideoLayoutStyle layoutStyle;
-//添加画面渲染
-- (void)addLiveRenderView:(ILiveRenderView *)renderView;
-//移除画面渲染
-- (void)removeLiverRenderVeiw:(ILiveRenderView *)renderView;
 //显示日志信息
 - (void)showLogView:(NSString *)qualityParams;
 //关闭日志信息
