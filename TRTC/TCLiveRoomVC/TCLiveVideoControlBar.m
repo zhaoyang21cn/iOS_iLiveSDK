@@ -119,6 +119,7 @@
     [customButton setImageEdgeInsets:UIEdgeInsetsMake(10, 10, self.frame.size.height - (CONTROLBAR_BUTTON_WIDTH - 20)/imageWidth *imageHeight -10, 10)];
     return customButton;
 }
+#pragma mark - Handle Event
 //聊天按钮
 - (void)chatBtnClick:(UIButton *)sender{
     if (!sender.selected) {
@@ -234,7 +235,9 @@
         [_delegate feedBackBtnClick:sender];
     }
     if ([_delegate isKindOfClass:[UIViewController class]]) {
-        [self showFeedBackMenuOnVC:(UIViewController *)_delegate];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"若您在接入过程中有疑问可直接反馈给我们" message:@"邮箱联系地址：trtcfb@qq.com" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil]];
+        [((UIViewController *)self.delegate) presentViewController:alert animated:YES completion:nil];
     }
 }
 //log展示开关
@@ -243,56 +246,6 @@
     if ([_delegate respondsToSelector:@selector(logBtnClick:)]) {
         [_delegate logBtnClick:self.logBtn];
     }
-}
-//弹出反馈菜单
--(void)showFeedBackMenuOnVC:(UIViewController *)vc{
-    UIAlertController *actionController = [UIAlertController alertControllerWithTitle:@"请选择反馈类型" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *catonSheet = [UIAlertAction actionWithTitle:@"视频卡顿" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self feedBackWithExt:@"视频卡顿"];
-    }];
-    UIAlertAction *blurActionSheet = [UIAlertAction actionWithTitle:@"画面不清晰" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self feedBackWithExt:@"画面不清晰"];
-    }];
-    UIAlertAction *voiceActionSheet = [UIAlertAction actionWithTitle:@"音质较差" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self feedBackWithExt:@"音质较差"];
-    }];
-    UIAlertAction *jubaoActionSheet = [UIAlertAction actionWithTitle:@"举报" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self showInputFeedBackAlertOnVC:vc];
-    }];
-    UIAlertAction *otherActionSheet = [UIAlertAction actionWithTitle:@"其他" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self showInputFeedBackAlertOnVC:vc];
-    }];
-    UIAlertAction *cancleActionSheet = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    [actionController addAction:catonSheet];
-    [actionController addAction:blurActionSheet];
-    [actionController addAction:voiceActionSheet];
-    [actionController addAction:jubaoActionSheet];
-    [actionController addAction:otherActionSheet];
-    [actionController addAction:cancleActionSheet];
-    [vc presentViewController:actionController animated:YES completion:nil];
-}
-//反馈上报
-- (void)feedBackWithExt:(NSString *)ext{
-    [[ILiveSDK getInstance] uploadLog:ext logDayOffset:0 uploadResult:^(int retCode, NSString *retMsg, NSString *logKey) {
-        if (retCode == 0) {
-            NSLog(@"上报成功");
-            [[UIToastView getInstance] showToastWithMessage:@"非常感谢您的反馈" toastMode:UIToastShowMode_Succ];
-        }
-        else{
-            NSLog(@"上报失败");
-            [[UIToastView getInstance] showToastWithMessage:[NSString stringWithFormat:@"反馈失败%@",retMsg] toastMode:UIToastShowMode_fail];
-        }
-    }];
-}
-//其他反馈输入
-- (void)showInputFeedBackAlertOnVC:(UIViewController *)vc{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请输入具体问题描述" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addTextFieldWithConfigurationHandler:nil];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self feedBackWithExt:alertController.textFields.firstObject.text];
-    }]];
-    [vc presentViewController:alertController animated:YES completion:nil];
 }
 //弹出配置菜单
 -(void)showChangeRoleMenuOnVC:(UIViewController *)vc{
