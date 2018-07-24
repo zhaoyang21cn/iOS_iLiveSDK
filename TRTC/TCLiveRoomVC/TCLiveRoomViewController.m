@@ -90,33 +90,37 @@
 }
 
 - (void)enterRoom{
-    ILiveRoomOption *option = [ILiveRoomOption defaultHostLiveOption];
-    option.imOption.imSupport = YES;
-    option.memberStatusListener = self.videoLayoutView;
-    option.roomDisconnectListener = self;
-    option.controlRole = self.role;
-
-    [[ILiveRoomManager getInstance] createRoom:[self.roomID intValue] option:option succ:^{
-        NSLog(@"-----> create room succ");
-        [[UIToastView getInstance] showToastWithMessage:@"创建房间成功" toastMode:UIToastShowMode_Succ];
-        [self.controlBar enableBeauty:YES];//进入房间默认开启美颜
-    } failed:^(NSString *module, int errId, NSString *errMsg) {
-        if(errId == 10021){
-            //表示房间已存在直接加入房间
-            [[ILiveRoomManager getInstance] joinRoom:[self.roomID intValue] option:option succ:^{
-                NSLog(@"-----> join room succ");
-                [[UIToastView getInstance] showToastWithMessage:@"加入房间成功" toastMode:UIToastShowMode_Succ];
-                [self.controlBar enableBeauty:YES];//进入房间默认开启美颜
-            } failed:^(NSString *module, int errId, NSString *errMsg) {
-                NSLog(@"-----> join room fail,%@ %d %@",module, errId, errMsg);
+    [[TCLiveRequestManager getInstance] reqGetAuthBufferInfoWithParams:@{@"roomID":self.roomID,@"userID":[TCLiveRequestManager getInstance].userID} block:^(NSDictionary *info) {
+        ILiveRoomOption *option = [ILiveRoomOption defaultHostLiveOption];
+        option.imOption.imSupport = YES;
+        option.memberStatusListener = self.videoLayoutView;
+        option.roomDisconnectListener = self;
+        option.controlRole = self.role;
+        option.avOption.privateMapKey = [info[@"privateMapKey"] dataUsingEncoding:NSUTF8StringEncoding];
+        
+        [[ILiveRoomManager getInstance] createRoom:[self.roomID intValue] option:option succ:^{
+            NSLog(@"-----> create room succ");
+            [[UIToastView getInstance] showToastWithMessage:@"创建房间成功" toastMode:UIToastShowMode_Succ];
+            [self.controlBar enableBeauty:YES];//进入房间默认开启美颜
+        } failed:^(NSString *module, int errId, NSString *errMsg) {
+            if(errId == 10021){
+                //表示房间已存在直接加入房间
+                [[ILiveRoomManager getInstance] joinRoom:[self.roomID intValue] option:option succ:^{
+                    NSLog(@"-----> join room succ");
+                    [[UIToastView getInstance] showToastWithMessage:@"加入房间成功" toastMode:UIToastShowMode_Succ];
+                    [self.controlBar enableBeauty:YES];//进入房间默认开启美颜
+                } failed:^(NSString *module, int errId, NSString *errMsg) {
+                    NSLog(@"-----> join room fail,%@ %d %@",module, errId, errMsg);
+                    [[UIToastView getInstance] showToastWithMessage:errMsg toastMode:UIToastShowMode_fail];
+                }];
+            }
+            else{
+                NSLog(@"-----> create room fail,%@ %d %@",module, errId, errMsg);
                 [[UIToastView getInstance] showToastWithMessage:errMsg toastMode:UIToastShowMode_fail];
-            }];
-        }
-        else{
-            NSLog(@"-----> create room fail,%@ %d %@",module, errId, errMsg);
-            [[UIToastView getInstance] showToastWithMessage:errMsg toastMode:UIToastShowMode_fail];
-        }
+            }
+        }];
     }];
+    
 }
 
 - (void)customLeftButton{

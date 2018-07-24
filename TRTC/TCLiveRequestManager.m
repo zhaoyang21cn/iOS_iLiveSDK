@@ -57,6 +57,31 @@
     [task resume];
 }
 
+-(void)reqGetAuthBufferInfoWithParams:(NSDictionary *)params block:(LiveAuthBufferBlock)block{
+    NSMutableURLRequest *request = [self getSendPostRequest:AuthBuffer_Info_Url body:params];
+    
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [sessionConfig setTimeoutIntervalForRequest:30];
+
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error|| data == nil) {
+            [[UIToastView getInstance] showToastWithMessage:@"获取authBuffer请求失败" toastMode:UIToastShowMode_fail];
+        }
+        else{
+            //无error data解不出
+            NSDictionary *info = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            if (info) {
+                block(info);
+            }
+            else{
+                [[UIToastView getInstance] showToastWithMessage:@"获取authBuffer解包失败" toastMode:UIToastShowMode_fail];
+            }
+        }
+    }];
+    [task resume];
+}
+
 - (NSMutableURLRequest *)getSendPostRequest:(NSString *)url body:(NSDictionary *)body{
     
     NSData *dataBody = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error:nil];
