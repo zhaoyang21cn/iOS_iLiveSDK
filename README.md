@@ -99,3 +99,9 @@ TCLiveRoomViewController *vc = [[TCLiveRoomViewController alloc] initWithRoomID:
 [self.navigationController pushViewController:vc animated:YES];
 ~~~
 在复用的同时，本界面中的视频画面、消息聊天、控制按钮模块都可单独使用，只需要初始化创建TCLiveVideoLayoutView(视频区域)、TCLiveChatTableView(消息列表)、TCLiveVideoControlBar(控制bar)、UITextField(输入框)，并设置大小位置，添加到指定界面即可，详细代码位置请参见工程中TCLiveRoomViewController类的viewDidLoad方法。
+
+# 联系我们
+
+关注公众号"腾讯云视频"，给公众号发关键字"技术支持"，会有专人联系。
+
+![](https://main.qcloudimg.com/raw/769293c3dbc0df8fbfb7d6a7cc904692.jpg)
